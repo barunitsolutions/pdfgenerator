@@ -1,0 +1,27 @@
+{
+  "name": "legaldoc",
+  "version": "1.0.0",
+  "description": "This project is for getting user information in forms and printing in PDF",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barunitsolutions/legaldoc.git"
+  },
+  "keywords": [
+    "forms",
+    "PAN"
+  ],
+  "author": "Barun IT Solutions",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/barunitsolutions/legaldoc/issues"
+  },
+  "homepage": "https://github.com/barunitsolutions/legaldoc#readme",
+  "dependencies": {
+    "pdfkit": "^0.10.0",
+    "pdfmake": "^0.1.60"
+  }
+}
