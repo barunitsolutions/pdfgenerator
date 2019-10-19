@@ -2,7 +2,10 @@ var PdfPrinter = require('pdfmake');
 var fs = require('fs');
 var fItem = require('./fieldItem.js')
 var sItem = require('./sectionItem.js')
-
+var lPhotoMatrix = require('./leftPhotoMatrix.js')
+var rPhotoMatrix = require('./rightPhotoMatrix.js')
+var formHeader = require('./formHeader.js') 
+var thumImpression = require('./thumbImpression.js')
 // Define font files
 var fonts = {
     // Roboto: {
@@ -53,40 +56,51 @@ var printer = new PdfPrinter(fonts);
 
 var docDefinition = {
     defaultStyle: {
-        font: 'Helvetica',
+        font: 'OpenSans',
         alignment : 'justify',
-        fontSize : 14
+        fontSize : 12
       },
     pageSize: 'A4',
-    pageMargins: [10, 5, 10, 5],
+    pageMargins: [30, 20, 30, 20],
     styles: {
         header: {
-            fontSize: 12,
+            fontSize: 8,
             bold: true,
             alignment : 'justify',
-            margin : [0,0,0,20]
+            margin : [0,0,0,10]
         },
         label: {
-            fontSize: 10,
+            fontSize: 8,
             // bold: true,
             margin : [20,0,20,10]
         },
         sectionHeader: {
-            fontSize: 10,
+            fontSize: 8,
             bold: true,
             margin : [20,0,20,10],
             font: 'OpenSans'
         }
     },
-    content: [ {
-        stack: [
-            {text:'Form No. 49A'},
-            {text:'Application for Allotment of Permanent Account Number'},
-            {text:'[In the case of Indian Citizens/Indian Companies/Entities incorporated in India/'},
-            {text: 'Unincorporated entities formed in India]'}
-        ],
+    content: [{columns :[
+      {width: 100, table : new lPhotoMatrix()},
+      {width : '*',
+      margin : [10,0,10,10],
+      layout : 'noBorders',
+       table : new formHeader() ,
+        
         style: 'header',
         alignment : 'center'},
+        {width: 100, table : new rPhotoMatrix()}
+    ]},{
+
+      columns : [
+        {stack: [{text:'Sir'},
+        {text:'I/We hereby request that a permanent account number to be alloted to me/us'},
+        {text:'I/We give below necessary particulars:'},
+        ],fontSize:8, margin:[0,30,0,0]},
+        {width: 200,table : new thumImpression()}
+      ]
+    },
 
         // {columns : new sItem(1,'First Section',[{label:'First Name',value:'Bharani'}])},
         {columns : new sItem(1,'Full Name (Full exapanded name to be mentioned as appearing in proof of identity/address documents : initals are not permitted)',

@@ -10,32 +10,15 @@ module.exports = class FieldItem{
         this.fieldLabelWidth = fieldLabelWidth;
 
       return [{width: this.fieldLabelWidth,text:this.fieldLabel,margin : this.fieldMargin}, {table: {
-            headerRows : 1,
+            // headerRows : 1,
             widths: this.returnWidthArray(5),
-            heights : 10,
+            heights : this.returnWidthArray(10),
             body: this.createTableBody(this.fieldValue),
-            layout: {
-				hLineWidth: function (i, node) {
-					return (i === 0 || i === node.table.body.length) ? 1 : 1;
-				},
-				vLineWidth: function (i, node) {
-					return (i === 0 || i === node.table.widths.length) ? 1 : 1;
-				},
-				hLineColor: function (i, node) {
-					return (i === 0 || i === node.table.body.length) ? 'gray' : 'gray';
-				},
-				vLineColor: function (i, node) {
-					return (i === 0 || i === node.table.widths.length) ? 'gray' : 'gray';
-				},
-				// hLineStyle: function (i, node) { return {dash: { length: 10, space: 4 }}; },
-				// vLineStyle: function (i, node) { return {dash: { length: 10, space: 4 }}; },
-				// paddingLeft: function(i, node) { return 4; },
-				// paddingRight: function(i, node) { return 4; },
-				// paddingTop: function(i, node) { return 2; },
-				// paddingBottom: function(i, node) { return 2; },
-				// fillColor: function (rowIndex, node, columnIndex) { return null; }
-			}
-          },margin : this.fieldMargin}]
+          
+          },margin : this.fieldMargin,  layout: {
+              hLineColor : '#D5E3E6',
+              vLineColor : '#D5E3E6'
+          }}]
 
     }
 
@@ -46,7 +29,7 @@ module.exports = class FieldItem{
         arr.fill('',0,arr.length);
         var value = str.toUpperCase().split('');
         
-        returObject.push( arr.map(function(current,index) { return value[index] ? value[index] : '' }));
+        returObject.push( arr.map(function(current,index) { return {'text':value[index] ? value[index] : '' , 'alignment' : 'center', 'fontSize':8,margin: [0, 1, 0, 0] }}));
 
         // console.log(returObject);
 
