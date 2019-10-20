@@ -23,9 +23,23 @@ module.exports = class FieldItem{
                       hLineColor : '#D5E3E6',
                       vLineColor : '#D5E3E6'
                   }}]
-        
+          case 'noLabel':
+                this.fieldLength = 36        
+          return [{table: {
+            // headerRows : 1,
+            
+            widths: this.returnWidthArray(5),
+            heights : this.returnWidthArray(10),
+            body: this.createTableBody(this.fieldValue),
+          
+          },margin : this.fieldMargin,  layout: {
+              hLineColor : '#D5E3E6',
+              vLineColor : '#D5E3E6'
+          }}]
           case 'checkbox':
                 return [{width: this.fieldLabelWidth, margin : this.fieldMargin,text:this.fieldLabel},{columns:this.returnCheckBoxArray(this.fieldValue)}]
+          case 'placeHolder':
+                return [{width: this.fieldLabelWidth, margin : this.fieldMargin,text:this.fieldLabel},{text:this.fieldValue, margin:[10,0,0,10]}]               
           default:
                 return [{width: this.fieldLabelWidth,text:this.fieldLabel,margin : this.fieldMargin}, {table: {
                     // headerRows : 1,
@@ -69,7 +83,7 @@ module.exports = class FieldItem{
 
         return arr.map((i)=> {
             let icon = i.checked ? {text:  ''  ,style: 'icon'} : {text:   ''    ,style: 'icon'}
-            return {text: [icon,{text:'  '},{text:i.text}]}
+            return {text: [icon,{text:'  '},{text:i.text}], margin:[0,0,0,5]}
         })
 
     }

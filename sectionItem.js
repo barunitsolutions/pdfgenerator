@@ -9,13 +9,20 @@ module.exports = class SectionItem{
         this.sectionTitle = sectionTitle;
         this.sectionFields = sectionFields;
         
-        this.section.push( {width:10 , text: this.sectionNumber, style : 'sectionHeader'} )
+        this.section.push( {width:20 , text: this.sectionNumber, style : 'sectionHeader'} )
 
         this.stack.push({text : this.sectionTitle,margin : [0,0,0,10],style: 'sectionHeader'})
 
         this.sectionFields.map(function(crr,Index){
             var obj = {};
-             obj['columns'] = new fItem(150,crr['label'],25,[0,0,0,5],crr['value'],crr['fieldType'])
+            let length = crr.fieldLength ? crr.fieldLength:25;
+            let labelWidth = crr.fieldLabelWidth ? crr.fieldLabelWidth: 150; 
+            if(crr['value'] || crr['value'] == ''){
+            obj['columns'] = new fItem(labelWidth,crr['label'], length ,[0,0,0,5],crr['value'],crr['fieldType'])
+            }
+            else{
+                obj['columns'] = [{text:crr['label'], margin:[0,0,0,5]}] 
+            }
             return obj;
         }).forEach(element => {
             this.stack.push(element)
