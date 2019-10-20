@@ -14,6 +14,17 @@ var fonts = {
     //     italics: 'fonts/Roboto-Italic.ttf',
     //     bolditalics: 'fonts/Roboto-MediumItalic.ttf'
     // },
+    Fontello :{
+      normal: 'fonts/fontello/font/fontello.ttf',
+      bold: 'fonts/fontello/font/fontello.ttf',
+      italics: 'fonts/fontello/font/fontello.ttf',
+      bolditalics: 'fonts/fontello/font/fontello.ttf'
+    },
+    Baskerville : {
+      bold : 'fonts/LibreBaskerville-Bold.ttf',
+      italics: 'fonts/LibreBaskerville-Italic.ttf',
+      normal : 'fonts/LibreBaskerville-Regular.ttf'
+    },
     OpenSans: {
         normal: 'fonts/OpenSans-Regular.ttf',
         bold: 'fonts/OpenSans-Bold.ttf',
@@ -72,13 +83,17 @@ var docDefinition = {
         label: {
             fontSize: 8,
             // bold: true,
-            margin : [20,0,20,10]
+            margin : [10,0,20,10]
         },
         sectionHeader: {
             fontSize: 8,
             bold: true,
-            margin : [20,0,20,10],
-            font: 'OpenSans'
+            margin : [0,0,20,10],
+            font: 'Helvetica'
+        },
+        icon : {
+          font : 'Fontello',
+          
         }
     },
     content: [{columns :[
@@ -94,29 +109,34 @@ var docDefinition = {
     ]},{
 
       columns : [
-        {stack: [{text:'Sir'},
-        {text:'I/We hereby request that a permanent account number to be alloted to me/us'},
+        {stack: [{text:'Sir,'},
+        {text:'I/We hereby request that a permanent account number to be alloted to me/us.'},
         {text:'I/We give below necessary particulars:'},
         ],fontSize:8, margin:[0,30,0,0]},
-        {width: 200,table : new thumImpression()}
+        {width: 200,table : new thumImpression(), margin:[0,0,0,10],}
       ]
     },
 
         // {columns : new sItem(1,'First Section',[{label:'First Name',value:'Bharani'}])},
         {columns : new sItem(1,'Full Name (Full exapanded name to be mentioned as appearing in proof of identity/address documents : initals are not permitted)',
-                    [{label:'Last Name/Surname',value:'Ganeshan'},
-                    {label:'First Name',value:'Bharanidharan'},
-                    {label:'Middle Name',value:''},
+                    [{label:[{text:'Please select title,  '},{text:  ''  ,style: 'icon'},{text:' as applicable',style:'label'}],
+      
+                 value:[{text:'Shri', checked:true},{text:'Smt.'},{text:'Kumari'},{text:'M/s'}],fieldType: 'checkbox'},
+                    
+                    {label:'Last Name/Surname',value:'Ganeshan',fieldType: 'table'},
+                    {label:'First Name',value:'Bharanidharan',fieldType: 'table'},
+                    {label:'Middle Name',value:'',fieldType: 'table'},
                     ]
             )
         },
         {columns : new sItem(2,'Abbreviations of the above name, as you would like it, to be printed on the PAN card',
-        [{label:'Last Name/Surname',value:'Ganeshan'},
-        {label:'First Name',value:'Bharanidharan'},
-        {label:'Middle Name',value:''},
+        [{label:'Last Name/Surname',value:'Ganeshan',fieldType: 'table'},
+        {label:'First Name',value:'Bharanidharan',fieldType: 'table'},
+        {label:'Middle Name',value:'',fieldType: 'table'},
         ]
 )
-}
+},
+ 
         
         ],
 

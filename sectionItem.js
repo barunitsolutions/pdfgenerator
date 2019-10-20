@@ -15,7 +15,7 @@ module.exports = class SectionItem{
 
         this.sectionFields.map(function(crr,Index){
             var obj = {};
-             obj['columns'] = new fItem(150,crr['label'],25,[0,0,0,5],crr['value'])
+             obj['columns'] = new fItem(150,crr['label'],25,[0,0,0,5],crr['value'],crr['fieldType'])
             return obj;
         }).forEach(element => {
             this.stack.push(element)

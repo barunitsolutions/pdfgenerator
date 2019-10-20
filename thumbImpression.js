@@ -3,6 +3,7 @@ module.exports = class LeftPhotoMatrix {
     constructor() {
 
         return {
+          
             widths: [190,200],
             heights : [50,10],
             body: [
